@@ -15,8 +15,8 @@ public class Student extends Client {
 		menu = this.getServer().getMenu();
 		IItem item = null;
 		do{
+			item = menu.get(rng.nextInt(menu.size()));
 			try{
-				item = menu.get(rng.nextInt(menu.size()));
 				item.sell();
 				break;
 			}
