@@ -26,7 +26,7 @@ public class Demo2 {
 		//2.
 		ArrayList<Client> clients = new ArrayList<Client>();
 		for (int i = 0; i < 15; i++) {
-			int chance = rng.nextInt(101) + 1;
+			int chance = rng.nextInt(100) + 1;
 			if(chance > 50) clients.add(new Thug());
 			if(chance > 20 && chance <= 50) clients.add(new Student());
 			if(chance <= 20) clients.add(new Vegan());
