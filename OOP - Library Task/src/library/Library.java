@@ -70,7 +70,8 @@ public class Library {
 
 	public synchronized void returnBook(ReadingMaterial rented) {
 		rented.Return();
-		this.checkers.get(rented.getName()).interrupt();
+		Thread check = this.checkers.get(rented.getName());
+		check.interrupt();
 		if(rented instanceof Book) this.books.put(rented.getName(), (Book) rented);
 		else this.studyBooks.put(rented.getName(), (StudyBook) rented);
 		this.inventory.add(rented);
