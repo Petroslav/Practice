@@ -4,6 +4,7 @@ public abstract class Product implements Cloneable{
 
 	private final String name;
 	private double price;
+	private String[] names = {"Banana", "Orange,", "Apple", "Potato", "Eggplant", "Cucumber", "Pork", "Beef", "Chicken" };
 	
 	public Product(String name, double price) throws InvalidProductException{
 		if(name == null || name.isEmpty() || price <=0){
