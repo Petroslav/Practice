@@ -7,12 +7,11 @@ public class CharacterStreams {
 		File jojo = new File("neiskam.txt");
 		jojo.createNewFile();
 		Scanner sc = new Scanner(System.in);
-		BufferedWriter writes = new BufferedWriter(new FileWriter(jojo, true));
+		FileWriter writes = new FileWriter(jojo);
 		int cnt = 0;
 		while(true){
 			String one = sc.nextLine();
-			writes.append(one);
-			writes.newLine();
+			writes.write(one);
 			cnt++;
 			if(cnt == 2) break;
 		}
