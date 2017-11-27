@@ -20,8 +20,8 @@ public class Tests {
 					continue;
 				}
 				String c = Character.toString(ss.charAt(i));				
-				if(Character.isLetter(ss.charAt(i)) && ss.charAt(i) != ' '){
-					if(!Character.isLetter(ss.charAt(i-1))) tempString = c;
+				if(Character.isLetter(ss.charAt(i))){
+					if(i > 0 && !Character.isLetter(ss.charAt(i-1))) tempString = c;
 					else tempString += c;
 				}
 				if(i == ss.length()-1) words.add(tempString);
