@@ -42,24 +42,24 @@ public class WarAndPeace {
 		}
 		sc.close();
 		
-		File wordsLength = new File("Blyat/Words by Length.txt");
-		File wordsSeen = new File("Blyat/Words times Seen.txt");
-		wordsLength.createNewFile();
-		wordsSeen.createNewFile();
-		PrintStream ps = new PrintStream(wordsLength);
-		for(String z : wordsByLength){
-			ps.println(z);
-		}
-		ps.close();
-		
-		ps = new PrintStream(wordsSeen);
+//		File wordsLength = new File("Blyat/Words by Length.txt");
+//		File wordsSeen = new File("Blyat/Words times Seen.txt");
+//		wordsLength.createNewFile();
+//		wordsSeen.createNewFile();
+//		PrintStream ps = new PrintStream(wordsLength);
+//		for(String z : wordsByLength){
+//			ps.println(z);
+//		}
+//		ps.close();
+//		
+//		ps = new PrintStream(wordsSeen);
 		
 		ArrayList<Entry<String, Integer>> sadlife = new ArrayList<>();
 		sadlife.addAll(wordsByTimesSeen.entrySet());
 		Collections.sort(sadlife, new TimesSeenComparator());
 		
 		for(Entry<String, Integer> rip : sadlife){
-			ps.println(rip.getKey() + " - seen " + rip.getValue() + " times");
+//			ps.println(rip.getKey() + " - seen " + rip.getValue() + " times");
 			
 			File f = new File("nz/" + rip.getKey().length() +" letters.txt");
 			if(!f.exists()) f.createNewFile();
@@ -69,7 +69,7 @@ public class WarAndPeace {
 			writes.newLine();
 			writes.close();
 		}
-		ps.close();
+//		ps.close();
 
 
 		System.out.println("words: " + wordcount);
