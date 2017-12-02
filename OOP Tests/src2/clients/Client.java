@@ -30,7 +30,9 @@ public abstract class Client {
 	public void payBill(){
 		if(rng.nextInt(101) <= 80){
 			double tip = (rng.nextInt(6) + 5) / 100.0;
-			this.server.tip(this.bill * tip);
+			tip *= this.bill;
+			this.cash -= tip;
+			this.server.tip(tip);
 		}
 		
 		this.server.getPaid(this.bill);
