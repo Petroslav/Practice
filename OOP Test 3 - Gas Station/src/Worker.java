@@ -16,7 +16,8 @@ public class Worker extends Staff {
 					continue;
 				}
 			}
-		
+
+			System.out.println(Thread.currentThread().getName() + " - Started fueling a car");
 			car.getDispenser().makeBusy();
 			car.loadCar((nextDispenser.loadFuel(rng.nextInt(30) + 11)) , nextDispenser.loadType(rng.nextInt(3)));
 			
@@ -27,6 +28,7 @@ public class Worker extends Staff {
 			}
 			
 			getWorkplace().getRegister().getClients().offer(car.getOwner());
+			System.out.println(Thread.currentThread().getName() + " - Owner went to pay, servicing new car");
 		}
 	}
 }

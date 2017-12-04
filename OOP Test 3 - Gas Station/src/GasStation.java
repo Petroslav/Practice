@@ -16,7 +16,7 @@ import java.util.Random;
 public class GasStation {	
 	private static final String TOTAL_FUEL_SOLD = "SELECT fuel_type, SUM(fuel_quantity) AS total FROM station_loadings GROUP BY fuel_type";
 	private static final String BY_CARS_SERVICED = "SELECT kolonka_id, COUNT(loading_time) AS automobiles FROM station_loadings GROUP BY kolonka_id";
-	private static final String FUEL_BY_COLUMNS = "SELECT kolonka_id, fuel_type, fuel_quantiy, loading_time FROM station_loadings ORDER BY kolonka_id";
+	private static final String FUEL_BY_COLUMNS = "SELECT kolonka_id, fuel_type, fuel_quantity, loading_time FROM station_loadings ORDER BY kolonka_id";
 
 	private ArrayList<Worker> workers;
 	private ArrayList<Cashier> cashiers;
@@ -40,6 +40,10 @@ public class GasStation {
 		Staff.setWorkplace(this);
 	}
 	
+	public int sizeof(){
+		return this.archive.size();
+	}
+	
 	public Register getRegister() {
 		return register;
 	}
@@ -49,7 +53,7 @@ public class GasStation {
 	}
 	
 	public void archiveReceipt(Receipt r) {
-		if(this.archive.containsKey(LocalDate.now())){
+		if(!this.archive.containsKey(LocalDate.now())){
 			this.archive.put(LocalDate.now(), new ArrayList<Receipt>());
 		}
 		this.archive.get(LocalDate.now()).add(r);
@@ -61,7 +65,8 @@ public class GasStation {
 			ps.setInt(1, r.getColumn());
 			ps.setInt(2, r.getType());
 			ps.setInt(3, r.getGasLoaded());
-			ps.setString(4, LocalDate.now().toString());
+			ps.setString(4, r.getDate().toString());
+			ps.executeUpdate();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -158,6 +163,7 @@ public class GasStation {
 				int col = rs.getInt("kolonka_id");
 				if(kolnum != col){
 					System.out.println("Kolonka " + col + ": ");
+					if(zapis) pw.print("Kolonka " + col + ": ");
 					kolnum = col;
 				}
 				// 0 benzin , 1 dizel, 2 gas - za po - byrzo
@@ -291,7 +297,8 @@ public class GasStation {
 		public void run() {
 			while(true){
 				try {
-					Thread.sleep(24*60*60*1000);
+//					Thread.sleep(24*60*60*1000);
+					Thread.sleep(60*1000);
 				} catch (InterruptedException e) {
 					System.out.println("rip man");
 				}

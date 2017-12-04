@@ -21,9 +21,9 @@ public class GasDispenser {
 	}
 
 	public void addCar(Car car) {
-		this.carswaiting.offer(car);
 		car.setColumn(this.number);
 		car.loadColumn(this);
+		this.carswaiting.offer(car);
 	}
 
 	public int getNumber() {
