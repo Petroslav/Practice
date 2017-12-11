@@ -11,7 +11,12 @@ public class Worker extends Staff {
 			if(nextDispenser.isBusy()){
 				continue;
 			}else{
-				car = nextDispenser.getCarswaiting().poll();				
+				try {
+					car = nextDispenser.getCarswaiting().take();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}				
 				if(car == null) { 
 					continue;
 				}

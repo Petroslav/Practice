@@ -5,7 +5,12 @@ public class Cashier extends Staff {
 	@Override
 	public void run() {
 		while(true){
-			Owner client = getWorkplace().getRegister().getClients().poll();
+			Owner client = null;
+			try {
+				client = getWorkplace().getRegister().getClients().take();
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}
 			if(client == null) continue;
 			System.out.println(Thread.currentThread().getName() + " - Servicing new owner");
 			GasDispenser gas = client.getCar().getDispenser();
